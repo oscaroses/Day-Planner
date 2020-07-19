@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Work Day Scheduler</title>
+  </head>
+
+  <body>
+    <header class="jumbotron">
+      <h1 class="display-3">Work Day Scheduler</h1>
+      <p class="lead">A simple calendar app for scheduling your work day</p>
+      <p id="currentDay" class="lead"></p>
+    </header>
+    <div class="container">
+      <!-- Timeblocks go here -->
+    </div>
+    <footer>Oscar Oses</footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script>
+      $("#currentDay").text(moment().format("llll"));
+      var contDiv = $(".container");
+      $(document).ready(function () {
+        for (i = 0; i < 9; i++) {
+          var rowDiv = $("<div>");
+          var timeDiv = $("<div>");
+          var textDiv = $("<div>");
+          var buttDiv = $("<div>");
+
+          rowDiv.attr("class", "row");
+          timeDiv.attr("class", "col-1 hour");
+          textDiv.attr("class", "col-10");
+          textDiv.attr("id", )
+          buttDiv.attr("class", "col-1 saveBtn");
+          contDiv.append(rowDiv);
+          rowDiv.append(timeDiv, textDiv, buttDiv);
+        }
+
+        $(".saveBtn").on("click,", function {
+          
+        })
+
+
+
+      });
+    </script>
+  </body>
+</html>

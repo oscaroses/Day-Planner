@@ -6,4 +6,4 @@ This is a Simple application to create hourly events throughout the working day.
 
 ## Images
 
-![Work Day Scheduler]WDS.png
+![Work Day Scheduler]/Day-Planner/WDS.png

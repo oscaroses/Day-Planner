@@ -37,29 +37,65 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script>
       $("#currentDay").text(moment().format("llll"));
+      var currentTime = moment().hours();
       var contDiv = $(".container");
+      var entries = [];
       $(document).ready(function () {
-        for (i = 0; i < 9; i++) {
-          var rowDiv = $("<div>");
-          var timeDiv = $("<div>");
-          var textDiv = $("<div>");
-          var buttDiv = $("<div>");
+        function timeBlocks() {
+          for (i = 0; i < 24; i++) {
+            var rowDiv = $("<div>");
+            var timeDiv = $("<div>");
+            var textDiv = $("<input>");
+            var buttDiv = $("<button>");
 
-          rowDiv.attr("class", "row");
-          timeDiv.attr("class", "col-1 hour");
-          textDiv.attr("class", "col-10");
-          textDiv.attr("id", )
-          buttDiv.attr("class", "col-1 saveBtn");
-          contDiv.append(rowDiv);
-          rowDiv.append(timeDiv, textDiv, buttDiv);
+            rowDiv.attr("class", "row");
+            rowDiv.attr("id", "time" + i);
+            timeDiv.attr("class", "col-1 hour");
+            timeDiv.text([i] + ":00");
+            textDiv.attr("id", "textHour" + i);
+            textDiv.attr("class", "col-10 dataEntry");
+            buttDiv.attr("class", "col-1 fa fa-plus saveBtn");
+            buttDiv.attr("data-save", i);
+            contDiv.append(rowDiv);
+            rowDiv.append(timeDiv, textDiv, buttDiv);
+          }
         }
 
-        $(".saveBtn").on("click,", function {
-          
-        })
+        function addColor() {
+          if (currentTime > $("data-save" + i)) {
+            $(".dataEntry").attr("class", "col-10 past");
+          }
+        }
 
+        function makeEntry() {
+          var time = $(this).attr("data-save");
+          var entry = $("#textHour" + time).val();
+          var entryOb = {
+            entry: entry,
+            time: time,
+          };
+          entries.push(entryOb);
+          localStorage.setItem("entries", JSON.stringify(entries));
+        }
 
+        function loadEntry() {
+          if (localStorage.getItem("entries") !== null) {
+            var myEntries = JSON.parse(localStorage.getItem("entires"));
+            for (i = 0; i < myEntries.length; i++) {
+              $("#textHour" + myEntries[i].time).val(myEntries[i].entry);
+              var entryOb = {
+                entry: myEntries[i].entry,
+                time: myEntries[i].time,
+              };
+              entries.push(entryOb);
+            }
+          }
+        }
 
+        $(document).on("click", ".saveBtn", makeEntry);
+        timeBlocks();
+        addColor();
+        loadEntry();
       });
     </script>
   </body>

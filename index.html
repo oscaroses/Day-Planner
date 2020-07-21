@@ -35,11 +35,15 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script>
+      // This line will display the current time and day under the header.
       $("#currentDay").text(moment().format("llll"));
+
+      // These are global variables used throughout the script.
       var currentTime = moment().hours();
       var contDiv = $(".container");
       var entries = [];
       $(document).ready(function () {
+        //This function renders the time blocks. They are also given attributes to link with the css.
         function timeBlocks() {
           for (i = 9; i < 18; i++) {
             var rowDiv = $("<div>");
@@ -61,7 +65,7 @@
             rowDiv.append(timeDiv, textDiv, buttDiv);
           }
         }
-
+        //This function will give the input fields color depending on the time of day.
         function addColor() {
           for (let i = 9; i < 18; i++) {
             var theTime = $("#time" + i).attr("data-now");
@@ -74,7 +78,7 @@
             }
           }
         }
-
+        //This function stores events in local storage.
         function makeEntry() {
           var time = $(this).attr("data-save");
           var entry = $("#textHour" + time).val();
@@ -85,7 +89,7 @@
           entries.push(entryOb);
           localStorage.setItem("entries", JSON.stringify(entries));
         }
-
+        //This function loads events from local storage
         function loadEntry() {
           if (localStorage.getItem("entries") !== null) {
             var myEntries = JSON.parse(localStorage.getItem("entries"));
@@ -99,7 +103,7 @@
             }
           }
         }
-
+        //This event listener will run the function to save the event.
         $(document).on("click", ".saveBtn", makeEntry);
         timeBlocks();
         addColor();

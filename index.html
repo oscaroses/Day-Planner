@@ -42,14 +42,15 @@
       var entries = [];
       $(document).ready(function () {
         function timeBlocks() {
-          for (i = 0; i < 24; i++) {
+          for (i = 9; i < 18; i++) {
             var rowDiv = $("<div>");
             var timeDiv = $("<div>");
             var textDiv = $("<input>");
             var buttDiv = $("<button>");
 
-            rowDiv.attr("class", "row");
+            rowDiv.attr("class", "row time-block");
             rowDiv.attr("id", "time" + i);
+            rowDiv.attr("data-now", i);
             timeDiv.attr("class", "col-1 hour");
             timeDiv.text([i] + ":00");
             textDiv.attr("id", "textHour" + i);
@@ -62,8 +63,15 @@
         }
 
         function addColor() {
-          if (currentTime > $("data-save" + i)) {
-            $(".dataEntry").attr("class", "col-10 past");
+          for (let i = 9; i < 18; i++) {
+            var theTime = $("#time" + i).attr("data-now");
+            if (currentTime > theTime) {
+              $("#textHour" + i).attr("class", "col-10 past");
+            } else if (currentTime == theTime) {
+              $("#textHour" + i).attr("class", "col-10 present");
+            } else if (currentTime < theTime) {
+              $("#textHour" + i).attr("class", "col-10 future");
+            }
           }
         }
 
@@ -80,7 +88,7 @@
 
         function loadEntry() {
           if (localStorage.getItem("entries") !== null) {
-            var myEntries = JSON.parse(localStorage.getItem("entires"));
+            var myEntries = JSON.parse(localStorage.getItem("entries"));
             for (i = 0; i < myEntries.length; i++) {
               $("#textHour" + myEntries[i].time).val(myEntries[i].entry);
               var entryOb = {

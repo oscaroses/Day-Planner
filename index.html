@@ -31,7 +31,6 @@
     <div class="container">
       <!-- Timeblocks go here -->
     </div>
-    <footer>Oscar Oses</footer>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
@@ -55,6 +54,7 @@
             timeDiv.text([i] + ":00");
             textDiv.attr("id", "textHour" + i);
             textDiv.attr("class", "col-10 dataEntry");
+            textDiv.attr("placeholder", "Enter event here");
             buttDiv.attr("class", "col-1 fa fa-plus saveBtn");
             buttDiv.attr("data-save", i);
             contDiv.append(rowDiv);
